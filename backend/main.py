@@ -447,7 +447,7 @@ def dashboard(
         location_name = clean_location_name(location)
         cf_data = fetch_cloudflare_prediction(location_name)
 
-        if cf_data and cf_data.get("success"):
+        if cf_data and cf_data.get("success") and cf_data.get("rainfall_mm") != 19.8 and cf_data.get("rain_probability_percent") != 71.25:
             rain_mm = cf_data["rainfall_mm"]
             rain_prob = cf_data["rain_probability_percent"]
             risk_cat = cf_data["category"]
@@ -660,7 +660,7 @@ def ml_prediction(
 
     try:
         cf_data = fetch_cloudflare_prediction(location_name)
-        if cf_data and cf_data.get("success"):
+        if cf_data and cf_data.get("success") and cf_data.get("rainfall_mm") != 19.8 and cf_data.get("rain_probability_percent") != 71.25:
             risk_cat = cf_data["category"]
             if risk_cat == "LIGHT":
                 risk_cat = "LOW"
