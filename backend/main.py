@@ -325,108 +325,48 @@ def health():
 
 @app.get("/api/dashboard")
 def dashboard(
-
-    lat: float = Query(
-        DEFAULT_LAT,
-        ge=-90,
-        le=90
-    ),
-
-    lon: float = Query(
-        DEFAULT_LON,
-        ge=-180,
-        le=180
-    ),
-
-    location: str = Query(
-        DEFAULT_LOCATION
-    )
+    lat: float = Query(DEFAULT_LAT, ge=-90, le=90),
+    lon: float = Query(DEFAULT_LON, ge=-180, le=180),
+    location: str = Query(DEFAULT_LOCATION)
 ):
+    try:
+        location_name = clean_location_name(location)
+        cf_data = fetch_cloudflare_prediction(location_name)
 
-    location_name = clean_location_name(
-        location
-    )
+        if cf_data and cf_data.get("success"):
+            rain_mm = cf_data["rainfall_mm"]
+            rain_prob = cf_data["rain_probability_percent"]
+            risk_cat = cf_data["category"]
+            if risk_cat == "LIGHT":
+                risk_cat = "LOW"
+            elif risk_cat == "HEAVY":
+                risk_cat = "HIGH"
 
-    cf_data = fetch_cloudflare_prediction(location_name)
+            inundation = max(0.1, round(18.4 * (rain_mm / 120) ** 1.05, 1))
+            lead_time = max(0.8, round(7.0 - rain_mm / 35, 1))
 
-    forecast_data = generate_forecast(
-        hours=12,
-        lat=lat,
-        lon=lon
-    )
+            return {
+                "location": location_name,
+                "latitude": lat,
+                "longitude": lon,
+                "rainfall_mm": rain_mm,
+                "rain_probability_percent": rain_prob,
+                "risk": risk_cat,
+                "inundation_km2": inundation,
+                "lead_time_hours": lead_time,
+                "confidence": 87,
+                "model_predictions": cf_data.get("model_predictions", {}),
+                "weather_api_forecast": cf_data.get("weather_api_forecast", {}),
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }
 
-    values = calculate_dashboard_values(
-        forecast_data
-    )
-
-    if cf_data and cf_data["success"]:
-        rain_mm = cf_data["rainfall_mm"]
-        rain_prob = cf_data["rain_probability_percent"]
-        risk_cat = cf_data["category"]
-        if risk_cat == "LIGHT":
-            risk_cat = "LOW"
-        elif risk_cat == "HEAVY":
-            risk_cat = "HIGH"
-
-        inundation = max(0.1, round(18.4 * (rain_mm / 120) ** 1.05, 1))
-        lead_time = max(0.8, round(7.0 - rain_mm / 35, 1))
+        forecast_data = generate_forecast(hours=12, lat=lat, lon=lon)
+        values = calculate_dashboard_values(forecast_data)
 
         return {
             "location": location_name,
             "latitude": lat,
             "longitude": lon,
-            "rainfall_mm": rain_mm,
-            "rain_probability_percent": rain_prob,
-            "risk": risk_cat,
-            "inundation_km2": inundation,
-            "lead_time_hours": lead_time,
-            "confidence": 87,
-            "model_predictions": cf_data["model_predictions"],
-            "weather_api_forecast": cf_data["weather_api_forecast"],
-            "updated_at": datetime.now(timezone.utc).isoformat()
-        }
-
-    return {
-
-        # =================================================
-        # LOCATION
-        # =================================================
-
-        "location": location_name,
-
-        "latitude": lat,
-
-        "longitude": lon,
-
-        "rainfall_mm":
-            values["rainfall_mm"],
-
-        "rain_probability_percent":
-            round(min(98.0, values["rainfall_mm"] * 0.82), 1),
-
-        "risk":
-            values["risk"],
-
-        "inundation_km2":
-            values["inundation_km2"],
-
-        "lead_time_hours":
-            values["lead_time_hours"],
-
-        "confidence": 87,
-
-
-        # =================================================
-        # UPDATE TIME
-        # =================================================
-
-        "updated_at":
-            datetime.now().astimezone().isoformat(),
-
-
-        # =================================================
-        # DATA SOURCES
-        # =================================================
 
         "sources": {
 

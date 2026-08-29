@@ -9,22 +9,29 @@ import pandas as pd
 LATITUDE = 28.9845
 LONGITUDE = 77.7064
 
-MODEL_PATH = os.path.join(
-    os.path.dirname(__file__),
-    "rainfall_classifier.pkl"
-)
+MODEL_PATH_1 = os.path.join(os.path.dirname(__file__), "rainfall_classifier.pkl")
+MODEL_PATH_2 = os.path.join(os.path.dirname(__file__), "rainfall_model.pkl")
 
-# LOAD TRAINED MODEL
+bundle = None
+if os.path.exists(MODEL_PATH_1):
+    try:
+        bundle = joblib.load(MODEL_PATH_1)
+    except Exception:
+        pass
+if not bundle and os.path.exists(MODEL_PATH_2):
+    try:
+        bundle = joblib.load(MODEL_PATH_2)
+    except Exception:
+        pass
 
-bundle = joblib.load(MODEL_PATH)
-
-model = bundle["model"]
-features = bundle["features"]
-
-THRESHOLD_MM = bundle.get(
-    "threshold_mm",
-    5.0
-)
+if bundle and isinstance(bundle, dict) and "model" in bundle:
+    model = bundle["model"]
+    features = bundle.get("features", [])
+    THRESHOLD_MM = bundle.get("threshold_mm", 5.0)
+else:
+    model = None
+    features = []
+    THRESHOLD_MM = 5.0
 
 # GET RECENT & FORECAST WEATHER
 
