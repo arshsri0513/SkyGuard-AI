@@ -298,7 +298,7 @@ def calculate_dashboard_values(
 
 def fetch_cloudflare_prediction(location: str):
     clean_city = clean_location_name(location).lower()
-    url = f"https://construct-opened-budget-yearly.trycloudflare.com/predict/{clean_city}"
+    url = f"https://drag-pda-ours-sheffield.trycloudflare.com/predict/{clean_city}"
     try:
         import requests
         res = requests.get(url, timeout=3.5)
