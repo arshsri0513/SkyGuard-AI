@@ -1,4 +1,4 @@
-# 🌊 Rainsafe- Ai — Integrated Heavy Rainfall & Inundation Early Warning Platform
+# 🌩️ SkyGuard AI — Integrated Heavy Rainfall & Inundation Early Warning Platform
 > **Smart India Hackathon (SIH) 2026** • Problem Statement: AI/ML Heavy Rainfall & Inundation Disaster Intelligence
 
 [![Live Demo](https://img.shields.io/badge/Vercel-Live_Frontend-000000?style=for-the-badge&logo=vercel)](https://rainsafe-ai-sih2026.vercel.app)

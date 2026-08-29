@@ -4360,7 +4360,7 @@ function exportDronePDFReport() {
     <body>
       <div class="header">
         <div>
-          <h1>Rainsafe- Ai • UAV AERIAL RECONNAISSANCE REPORT</h1>
+          <h1>SkyGuard AI • UAV AERIAL RECONNAISSANCE REPORT</h1>
           <p>NATIONAL DISASTER MANAGEMENT AUTHORITY (NDMA) • EMERGENCY RECON PROTOCOL</p>
         </div>
         <div style="text-align: right;">
