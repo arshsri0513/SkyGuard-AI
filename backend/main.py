@@ -307,16 +307,21 @@ def fetch_cloudflare_prediction(location: str):
             pred = data.get("prediction", {})
             model_preds = data.get("model_predictions", {})
             weather_fc = data.get("weather_api_forecast", {})
+            
+            est_rain = float(pred.get("estimated_rainfall_mm", 0))
+            prob_percent = float(pred.get("rain_probability_percent", 0))
+            category = str(pred.get("category", "LOW")).upper()
+            
             return {
-                "rainfall_mm": float(pred.get("estimated_rainfall_mm", 0)),
-                "rain_probability_percent": float(pred.get("rain_probability_percent", 0)),
-                "category": str(pred.get("category", "LOW")).upper(),
+                "rainfall_mm": est_rain,
+                "rain_probability_percent": prob_percent,
+                "risk": category,
                 "model_predictions": model_preds,
                 "weather_api_forecast": weather_fc,
                 "success": True
             }
     except Exception as e:
-        print("Cloudflare prediction fetch fallback:", e)
+        print("Cloudflare API fetch error:", e)
     return None
 
 
@@ -447,10 +452,10 @@ def dashboard(
         location_name = clean_location_name(location)
         cf_data = fetch_cloudflare_prediction(location_name)
 
-        if cf_data and cf_data.get("success") and cf_data.get("rainfall_mm") != 19.8 and cf_data.get("rain_probability_percent") != 71.25:
+        if cf_data and cf_data.get("success"):
             rain_mm = cf_data["rainfall_mm"]
             rain_prob = cf_data["rain_probability_percent"]
-            risk_cat = cf_data["category"]
+            risk_cat = cf_data["risk"]
             if risk_cat == "LIGHT":
                 risk_cat = "LOW"
             elif risk_cat == "HEAVY":
