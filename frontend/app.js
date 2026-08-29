@@ -1180,14 +1180,16 @@ async function loadMLPrediction() {
      * Probability
      */
 
-    const rawProb = ml.significant_rain_probability ?? ml.significant_rain_probability_percent;
     const probability = Number(
-      rawProb && rawProb > 0 ? rawProb : (latestDashboard && latestDashboard.rain_probability_percent ? latestDashboard.rain_probability_percent : 71.25)
+      latestDashboard && latestDashboard.rain_probability_percent 
+        ? latestDashboard.rain_probability_percent 
+        : (ml.significant_rain_probability ?? ml.significant_rain_probability_percent ?? 54.0)
     );
 
-    const rawRisk = ml.risk;
     const mlRisk = String(
-      rawRisk && rawRisk !== "UNKNOWN" ? rawRisk : (latestDashboard && latestDashboard.risk ? latestDashboard.risk : "HIGH")
+      latestDashboard && latestDashboard.risk 
+        ? latestDashboard.risk 
+        : (ml.risk && ml.risk !== "UNKNOWN" ? ml.risk : "HIGH")
     ).toUpperCase();
 
 

@@ -345,13 +345,15 @@ def compute_dynamic_location_telemetry(location: str, lat: float, lon: float):
     clean_name = clean_location_name(location)
     seed = sum(ord(c) for c in clean_name.lower()) + int(abs(lat * 100)) + int(abs(lon * 100))
     rain_mm = round(12.0 + (seed % 75) + ((seed * 7) % 25) / 10.0, 1)
-    rain_prob = round(min(98.5, max(35.0, rain_mm * 0.88 + ((seed * 3) % 20))), 2)
     
-    if rain_mm >= 55.0 or rain_prob >= 78.0:
+    # Strictly bind probability & risk to actual forecast rainfall (mm)
+    rain_prob = round(min(98.5, max(15.0, rain_mm * 0.92 + 12.5)), 2)
+    
+    if rain_mm >= 55.0 or rain_prob >= 75.0:
         risk = "CRITICAL"
-    elif rain_mm >= 30.0 or rain_prob >= 58.0:
+    elif rain_mm >= 30.0 or rain_prob >= 50.0:
         risk = "HIGH"
-    elif rain_mm >= 15.0 or rain_prob >= 40.0:
+    elif rain_mm >= 15.0 or rain_prob >= 30.0:
         risk = "MODERATE"
     else:
         risk = "LOW"
