@@ -721,9 +721,15 @@ async def startup_event():
     )
 
     print(
-        "Location-aware dashboard: ENABLED"
-    )
-
-    print(
         "========================================\n"
     )
+
+# =========================================================
+# MOUNT FRONTEND STATIC FILES AT ROOT "/"
+# =========================================================
+from fastapi.staticfiles import StaticFiles
+import os
+
+frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
+if os.path.exists(frontend_dir):
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
