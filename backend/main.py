@@ -597,37 +597,43 @@ def scenario(
 def ml_prediction(
     lat: float | str = Query(DEFAULT_LAT),
     lon: float | str = Query(DEFAULT_LON),
-    lng: float | str | None = Query(None)
+    lng: float | str | None = Query(None),
+    location: str = Query(DEFAULT_LOCATION)
 ):
-
     clean_lat = parse_coordinate(lat, DEFAULT_LAT)
     raw_lon = lng if lng is not None else lon
     clean_lon = parse_coordinate(raw_lon, DEFAULT_LON)
+    location_name = clean_location_name(location)
 
     try:
-        forecast_data = generate_forecast(12, clean_lat, clean_lon)
-        peak_rainfall = max([item["rainfall_mm"] for item in forecast_data]) if forecast_data else 0.0
+        cf_data = fetch_cloudflare_prediction(location_name)
+        if cf_data and cf_data.get("success"):
+            risk_cat = cf_data["category"]
+            if risk_cat == "LIGHT":
+                risk_cat = "LOW"
+            elif risk_cat == "HEAVY":
+                risk_cat = "HIGH"
 
-        result = predict_rainfall_event(
-            lat=clean_lat,
-            lon=clean_lon,
-            forecast_peak_mm=peak_rainfall
-        )
+            return {
+                "significant_rain_probability": cf_data["rain_probability_percent"],
+                "risk": risk_cat,
+                "model": "Random Forest Classifier",
+                "threshold_mm": 5.0
+            }
 
-        if isinstance(result, dict) and "significant_rain_probability" in result:
-            return result
-
+        tel = compute_dynamic_location_telemetry(location_name, clean_lat, clean_lon)
         return {
-            "significant_rain_probability": 71.25,
-            "risk": "HIGH",
+            "significant_rain_probability": tel["rain_probability_percent"],
+            "risk": tel["risk"],
             "model": "Random Forest Classifier",
             "threshold_mm": 5.0
         }
     except Exception as err:
         print("ML prediction endpoint error:", err)
+        tel = compute_dynamic_location_telemetry(location_name or "Kolkata", clean_lat, clean_lon)
         return {
-            "significant_rain_probability": 71.25,
-            "risk": "HIGH",
+            "significant_rain_probability": tel["rain_probability_percent"],
+            "risk": tel["risk"],
             "model": "Random Forest Classifier",
             "threshold_mm": 5.0
         }
