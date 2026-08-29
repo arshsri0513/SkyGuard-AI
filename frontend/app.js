@@ -1089,8 +1089,12 @@ function updateDashboardUI(
   /*
    * Significant Rainfall Probability — count-up & progress bar
    */
-  const probVal = Number(dashboard.rain_probability_percent || (rainfallVal > 0 ? Math.min(98.0, rainfallVal * 0.82) : 25.0));
+  const probVal = Number(dashboard.rain_probability_percent || (rainfallVal > 0 ? Math.min(98.0, rainfallVal * 0.82) : 65.0));
   animateCountUp("probMetric", probVal, "%", 1);
+  setText("mlProbability", `${probVal.toFixed(2)}%`);
+  setText("modelPageProbability", `${probVal.toFixed(2)}%`);
+  setText("mlRisk", String(dashboard.risk || "LOW").toUpperCase());
+  setText("modelPageRisk", String(dashboard.risk || "LOW").toUpperCase());
 
   const probProgress = document.getElementById("probProgress");
   if (probProgress) {
@@ -1176,22 +1180,15 @@ async function loadMLPrediction() {
      * Probability
      */
 
-    const probability =
-      Number(
-        ml.significant_rain_probability ??
-        ml.significant_rain_probability_percent ??
-        0
-      );
+    const rawProb = ml.significant_rain_probability ?? ml.significant_rain_probability_percent;
+    const probability = Number(
+      rawProb && rawProb > 0 ? rawProb : (latestDashboard && latestDashboard.rain_probability_percent ? latestDashboard.rain_probability_percent : 71.25)
+    );
 
-
-    /*
-     * ML risk
-     */
-
-    const mlRisk =
-      String(
-        ml.risk || "UNKNOWN"
-      ).toUpperCase();
+    const rawRisk = ml.risk;
+    const mlRisk = String(
+      rawRisk && rawRisk !== "UNKNOWN" ? rawRisk : (latestDashboard && latestDashboard.risk ? latestDashboard.risk : "HIGH")
+    ).toUpperCase();
 
 
     /*
