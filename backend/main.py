@@ -43,6 +43,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# =========================================================
+# FRONTEND STATIC FILES MOUNTING AT ROOT "/"
+# =========================================================
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
+
+frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
+if os.path.exists(frontend_dir):
+    @app.get("/")
+    def serve_frontend_root():
+        index_file = os.path.join(frontend_dir, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"status": "operational"}
+
 
 # =========================================================
 # DEFAULT LOCATION
@@ -717,19 +733,16 @@ async def startup_event():
     )
 
     print(
-        "Location-aware forecast: ENABLED"
+        "========================================\n"
+    )
+
+if os.path.exists(frontend_dir):
+    app.mount("/", StaticFiles(directory=frontend_dir), name="static_frontend")
+
+    print(
+        "Status: OPERATIONAL"
     )
 
     print(
         "========================================\n"
     )
-
-# =========================================================
-# MOUNT FRONTEND STATIC FILES AT ROOT "/"
-# =========================================================
-from fastapi.staticfiles import StaticFiles
-import os
-
-frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
-if os.path.exists(frontend_dir):
-    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
