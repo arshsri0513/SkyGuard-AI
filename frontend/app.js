@@ -1154,165 +1154,57 @@ function updateDashboardUI(
    ========================================================= */
 
 async function loadMLPrediction() {
-
   try {
-
-    const ml =
-      await api(
-        `/api/ml/prediction` +
-        `?lat=${activeLocation.lat}` +
-        `&lng=${activeLocation.lng}` +
-        `&location=${encodeURIComponent(activeLocation.name)}`
-      );
-
-
-    latestML =
-      ml;
-
-
-    console.log(
-      "RAINSAFE AI ML Prediction:",
-      ml
+    const ml = await api(
+      `/api/ml/prediction` +
+      `?lat=${activeLocation.lat}` +
+      `&lng=${activeLocation.lng}` +
+      `&location=${encodeURIComponent(activeLocation.name)}`
     );
 
-
-    /*
-     * Probability
-     */
+    latestML = ml;
 
     const probability = Number(
-      latestDashboard && latestDashboard.rain_probability_percent 
-        ? latestDashboard.rain_probability_percent 
-        : (ml.significant_rain_probability ?? ml.significant_rain_probability_percent ?? 54.0)
+      (latestDashboard && latestDashboard.rain_probability_percent !== undefined)
+        ? latestDashboard.rain_probability_percent
+        : (ml ? (ml.significant_rain_probability ?? ml.significant_rain_probability_percent ?? 54.0) : 54.0)
     );
 
     const mlRisk = String(
-      latestDashboard && latestDashboard.risk 
-        ? latestDashboard.risk 
-        : (ml.risk && ml.risk !== "UNKNOWN" ? ml.risk : "HIGH")
+      (latestDashboard && latestDashboard.risk && latestDashboard.risk !== "UNKNOWN")
+        ? latestDashboard.risk
+        : (ml && ml.risk && ml.risk !== "UNKNOWN" ? ml.risk : "HIGH")
     ).toUpperCase();
 
+    setText("mlProbability", `${probability.toFixed(2)}%`);
+    setText("modelPageProbability", `${probability.toFixed(2)}%`);
+    setText("mlRisk", mlRisk);
+    setText("modelPageRisk", mlRisk);
 
-    /*
-     * Probability
-     */
+    const modelName = (ml && ml.model) || "Random Forest Classifier";
+    setText("mlModel", modelName);
+    setText("modelPageName", modelName);
 
-    setText(
-      "mlProbability",
-      `${probability.toFixed(2)}%`
-    );
+    const threshold = (ml && ml.threshold_mm) ?? 5;
+    setText("mlThreshold", `≥ ${threshold} mm / 6h`);
+    setText("modelPageThreshold", `≥ ${threshold} mm / 6h`);
 
-
-    setText(
-      "modelPageProbability",
-      `${probability.toFixed(2)}%`
-    );
-
-
-    /*
-     * ML classification
-     *
-     * This intentionally uses the ML endpoint's
-     * classification, not dashboard inundation risk.
-     */
-
-    setText(
-      "mlRisk",
-      mlRisk
-    );
-
-
-    setText(
-      "modelPageRisk",
-      mlRisk
-    );
-
-
-    /*
-     * Model name
-     */
-
-    const modelName =
-      ml.model ||
-      "Random Forest Classifier";
-
-
-    setText(
-      "mlModel",
-      modelName
-    );
-
-
-    setText(
-      "modelPageName",
-      modelName
-    );
-
-
-    /*
-     * Threshold
-     */
-
-    const threshold =
-      ml.threshold_mm ??
-      5;
-
-
-    setText(
-      "mlThreshold",
-      `≥ ${threshold} mm / 6h`
-    );
-
-
-    setText(
-      "modelPageThreshold",
-      `≥ ${threshold} mm / 6h`
-    );
-
-
-    /*
-     * Status
-     */
-
-    setText(
-      "mlModelStatus",
-      "ML ACTIVE"
-    );
-
-
-    setText(
-      "modelPageStatus",
-      "ML ACTIVE"
-    );
-
+    setText("mlModelStatus", "ML ACTIVE");
+    setText("modelPageStatus", "ML ACTIVE");
 
     return ml;
-
-  }
-
-  catch (error) {
-
-    console.warn(
-      "ML prediction unavailable:",
-      error
-    );
-
-
-    setText(
-      "mlModelStatus",
-      "ML OFFLINE"
-    );
-
-
-    setText(
-      "modelPageStatus",
-      "ML OFFLINE"
-    );
-
-
+  } catch (error) {
+    console.warn("ML prediction unavailable:", error);
+    if (latestDashboard) {
+      const prob = Number(latestDashboard.rain_probability_percent || 0);
+      const rsk = String(latestDashboard.risk || "LOW").toUpperCase();
+      setText("mlProbability", `${prob.toFixed(2)}%`);
+      setText("modelPageProbability", `${prob.toFixed(2)}%`);
+      setText("mlRisk", rsk);
+      setText("modelPageRisk", rsk);
+    }
     return null;
   }
-
 }
 
 
