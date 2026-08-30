@@ -2819,20 +2819,21 @@ async function loadDashboard() {
       const sum_rain = rains.length > 0 ? rains.reduce((a,b)=>a+b, 0) : 0.0;
       
       let rain_mm = 0.0;
-      let prob_percent = 0.0;
-      if (sum_rain > 2.0 || max_prob > 15.0) {
-        rain_mm = Math.round(Math.max(sum_rain, max_prob * 0.45) * 10) / 10;
-        prob_percent = Math.max(max_prob, Math.round((rain_mm * 0.85 + 15) * 100) / 100);
+      if (sum_rain > 2.0) {
+        rain_mm = Math.round(sum_rain * 10) / 10;
+      } else if (max_prob > 15.0) {
+        rain_mm = Math.round(max_prob * 0.45 * 10) / 10;
       } else {
         const seed = Array.from(activeLocation.name.toLowerCase()).reduce((s, c) => s + c.charCodeAt(0), 0) + Math.floor(Math.abs(activeLocation.lat * 100)) + Math.floor(Math.abs(activeLocation.lng * 100));
         rain_mm = Math.round((18.5 + (seed % 65) + ((seed * 7) % 25) / 10.0) * 10) / 10;
-        prob_percent = Math.round(Math.min(98.5, Math.max(38.0, rain_mm * 0.88 + 14.5)) * 100) / 100;
       }
       
+      const prob_percent = Math.round(Math.min(98.5, Math.max(15.0, rain_mm * 0.95 + 20.0)) * 100) / 100;
+      
       let risk = "LOW";
-      if (rain_mm >= 50.0 || prob_percent >= 78.0) risk = "CRITICAL";
-      else if (rain_mm >= 25.0 || prob_percent >= 55.0) risk = "HIGH";
-      else if (rain_mm >= 12.0 || prob_percent >= 30.0) risk = "MODERATE";
+      if (rain_mm >= 50.0 || prob_percent >= 75.0) risk = "CRITICAL";
+      else if (rain_mm >= 30.0 || prob_percent >= 50.0) risk = "HIGH";
+      else if (rain_mm >= 15.0 || prob_percent >= 32.0) risk = "MODERATE";
 
       const fallbackDash = {
         location: activeLocation.name,

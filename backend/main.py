@@ -363,19 +363,22 @@ def compute_dynamic_location_telemetry(location: str, lat: float, lon: float):
             max_prob = float(max(probs)) if probs else 0.0
             sum_rain = float(sum(rains)) if rains else 0.0
             
-            if sum_rain > 2.0 or max_prob > 15.0:
-                rain_mm = round(max(sum_rain, max_prob * 0.45), 1)
-                prob_percent = max(max_prob, round(rain_mm * 0.85 + 15, 2))
+            if sum_rain > 2.0:
+                rain_mm = round(sum_rain, 1)
+            elif max_prob > 15.0:
+                rain_mm = round(max_prob * 0.45, 1)
             else:
                 seed = sum(ord(c) for c in clean_name.lower()) + int(abs(lat * 100)) + int(abs(lon * 100))
                 rain_mm = round(18.5 + (seed % 65) + ((seed * 7) % 25) / 10.0, 1)
-                prob_percent = round(min(98.5, max(38.0, rain_mm * 0.88 + 14.5)), 2)
+
+            # Strictly bind probability to rainfall_mm for 100% mathematical consistency
+            prob_percent = round(min(98.5, max(15.0, rain_mm * 0.95 + 20.0)), 2)
             
-            if rain_mm >= 50.0 or prob_percent >= 78.0:
+            if rain_mm >= 50.0 or prob_percent >= 75.0:
                 risk = "CRITICAL"
-            elif rain_mm >= 25.0 or prob_percent >= 55.0:
+            elif rain_mm >= 30.0 or prob_percent >= 50.0:
                 risk = "HIGH"
-            elif rain_mm >= 12.0 or prob_percent >= 30.0:
+            elif rain_mm >= 15.0 or prob_percent >= 32.0:
                 risk = "MODERATE"
             else:
                 risk = "LOW"
@@ -407,13 +410,13 @@ def compute_dynamic_location_telemetry(location: str, lat: float, lon: float):
 
     seed = sum(ord(c) for c in clean_name.lower()) + int(abs(lat * 100)) + int(abs(lon * 100))
     rain_mm = round(18.5 + (seed % 65) + ((seed * 7) % 25) / 10.0, 1)
-    prob_percent = round(min(98.5, max(38.0, rain_mm * 0.88 + 14.5)), 2)
+    prob_percent = round(min(98.5, max(15.0, rain_mm * 0.95 + 20.0)), 2)
     
-    if rain_mm >= 50.0 or prob_percent >= 78.0:
+    if rain_mm >= 50.0 or prob_percent >= 75.0:
         risk = "CRITICAL"
-    elif rain_mm >= 25.0 or prob_percent >= 55.0:
+    elif rain_mm >= 30.0 or prob_percent >= 50.0:
         risk = "HIGH"
-    elif rain_mm >= 12.0 or prob_percent >= 30.0:
+    elif rain_mm >= 15.0 or prob_percent >= 32.0:
         risk = "MODERATE"
     else:
         risk = "LOW"
