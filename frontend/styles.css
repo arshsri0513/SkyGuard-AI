@@ -1278,3 +1278,142 @@ input[type=range] {
   font-weight: 600;
   color: var(--muted);
 }
+
+/* =========================================================
+   OFFICIAL IMD GOVERNMENT OF INDIA PORTAL HEADER BAR
+   ========================================================= */
+
+.imd-header-bar {
+  background: #0b192c;
+  border-bottom: 2px solid #1e3a8a;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.imd-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-bottom: 1px solid #334155;
+}
+
+.imd-gov-branding {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.emblem-wrapper {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: grid;
+  place-items: center;
+}
+
+.imd-title-main {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.2px;
+}
+
+.imd-title-sub {
+  font-size: 11px;
+  color: #d4af37;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.imd-platform-tag {
+  font-size: 10px;
+  color: #94a3b8;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.imd-header-badges {
+  display: flex;
+  gap: 10px;
+}
+
+.imd-badge-box {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-align: center;
+}
+
+.imd-badge-box.blue {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.badge-num {
+  font-size: 14px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.badge-lbl {
+  font-size: 9px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* IMD 4-Color Category Tab Bar */
+
+.imd-category-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: #0f172a;
+}
+
+.imd-cat-btn {
+  border: 0;
+  padding: 10px 14px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.15s ease;
+}
+
+.imd-cat-btn:hover {
+  opacity: 0.9;
+}
+
+.imd-cat-btn b {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.imd-cat-btn small {
+  display: block;
+  font-size: 10px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.imd-cat-btn.red {
+  background: #dc2626;
+}
+
+.imd-cat-btn.crimson {
+  background: #991b1b;
+}
+
+.imd-cat-btn.green {
+  background: #059669;
+}
+
+.imd-cat-btn.gold {
+  background: #d97706;
+}

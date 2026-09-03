@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="leaflet.css" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="styles.css?v=7.0.0" />
+  <link rel="stylesheet" href="styles.css?v=8.0.0" />
 
   <!-- Three.js (local) -->
   <script src="three.min.js"></script>
@@ -202,6 +202,57 @@
   ====================================================== -->
 
   <main class="main">
+
+    <!-- OFFICIAL GOVT OF INDIA / IMD HEADER BAR -->
+    <div id="imdHeaderBar" class="imd-header-bar">
+      <div class="imd-header-content">
+        <div class="imd-gov-branding">
+          <div class="emblem-wrapper">
+            <svg width="26" height="38" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 10C50 10 30 35 30 65C30 85 40 95 50 95C60 95 70 85 70 65C70 35 50 10 50 10Z" fill="#D4AF37"/>
+              <circle cx="50" cy="115" r="18" stroke="#D4AF37" stroke-width="4"/>
+              <path d="M50 100V130M35 115H65M39 104L61 126M39 126L61 104" stroke="#D4AF37" stroke-width="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="imd-title-main">भारत मौसम विज्ञान विभाग • India Meteorological Department</div>
+            <div class="imd-title-sub">पृथ्वी विज्ञान मंत्रालय • Ministry of Earth Sciences • Government of India</div>
+            <div class="imd-platform-tag">SkyGuard AI • National Disaster Management Authority (NDMA) Integrated Early Warning Portal</div>
+          </div>
+        </div>
+
+        <div class="imd-header-badges">
+          <div class="imd-badge-box">
+            <div class="badge-num">150</div>
+            <div class="badge-lbl">Years of Service (1875 - 2025)</div>
+          </div>
+          <div class="imd-badge-box blue">
+            <div class="badge-num">ESSO</div>
+            <div class="badge-lbl">Earth System Science Org</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMD 4-COLOR CATEGORY TAB BAR -->
+      <div class="imd-category-bar">
+        <button class="imd-cat-btn red" onclick="showView('alerts')">
+          <b>Warnings</b>
+          <small>Subdivisionwise | Districtwise</small>
+        </button>
+        <button class="imd-cat-btn crimson" onclick="showView('inundation')">
+          <b>Nowcast</b>
+          <small>Districtwise | Stationwise Inundation</small>
+        </button>
+        <button class="imd-cat-btn green" onclick="showView('data')">
+          <b>Public Observation</b>
+          <small>Multi Indian Languages | Weather Realized</small>
+        </button>
+        <button class="imd-cat-btn gold" onclick="showView('model')">
+          <b>Specialized Forecast ⇇</b>
+          <small>ML Ensemble | 48-Hour Accumulation</small>
+        </button>
+      </div>
+    </div>
 
     <!-- TELEMETRY TICKER BAR -->
     <div class="telemetry-bar">
@@ -2413,7 +2464,7 @@
 <script src="chart.umd.js"></script>
 
 <!-- Application -->
-<script src="app.js?v=32.0.0"></script>
+<script src="app.js?v=33.0.0"></script>
 
 </body>
 </html>
