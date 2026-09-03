@@ -4667,6 +4667,8 @@ function initAtmosphericParticleField() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof initApp === "function") initApp();
+  if (typeof refreshAllData === "function") refreshAllData();
   document.querySelectorAll(".nav-item").forEach(item => {
     item.addEventListener("click", () => {
       setTimeout(updateElevationProfile, 150);
