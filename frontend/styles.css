@@ -188,12 +188,50 @@ nav {
   padding: 0 28px 60px;
 }
 
+/* =========================================================
+   TELEMETRY TICKER BAR & TOPBAR HEADER
+   ========================================================= */
+
+.telemetry-bar {
+  background: #0f172a;
+  border-bottom: 1px solid var(--line);
+  padding: 9px 24px;
+  margin: 0 -28px 14px;
+  font-size: 11px;
+  color: var(--muted);
+  overflow-x: auto;
+}
+
+.telemetry-track {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.telemetry-track span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.telemetry-track b {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.telemetry-track strong {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
 .topbar {
-  height: 72px;
+  padding: 14px 0 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
 }
 
 .eyebrow {
