@@ -938,7 +938,7 @@ function updateElevationProfile() {
   ];
 
   // 1. Draw Water Level Surge Fill
-  ctx.fillStyle = "rgba(69, 213, 255, 0.35)";
+  ctx.fillStyle = "rgba(99, 102, 241, 0.25)";
   ctx.beginPath();
   ctx.moveTo(0, height - 70);
   ctx.lineTo(width * 0.45, height - 70);
@@ -948,7 +948,7 @@ function updateElevationProfile() {
   ctx.fill();
 
   // Water Line
-  ctx.strokeStyle = "#45d5ff";
+  ctx.strokeStyle = "#6366f1";
   ctx.lineWidth = 2;
   ctx.setLineDash([4, 4]);
   ctx.beginPath();
@@ -958,7 +958,7 @@ function updateElevationProfile() {
   ctx.setLineDash([]);
 
   // Water Label
-  ctx.fillStyle = "#45d5ff";
+  ctx.fillStyle = "#6366f1";
   ctx.font = "bold 11px Inter, sans-serif";
   ctx.fillText("🌊 Water Accumulation Surge Level (49.5m)", 15, height - 80);
 
@@ -977,13 +977,13 @@ function updateElevationProfile() {
   ctx.closePath();
 
   const terrainGrad = ctx.createLinearGradient(0, 0, 0, height);
-  terrainGrad.addColorStop(0, "rgba(30, 58, 95, 0.8)");
-  terrainGrad.addColorStop(1, "rgba(13, 30, 51, 0.95)");
+  terrainGrad.addColorStop(0, "rgba(51, 65, 85, 0.9)");
+  terrainGrad.addColorStop(1, "rgba(30, 41, 59, 0.95)");
   ctx.fillStyle = terrainGrad;
   ctx.fill();
 
   // Terrain Line
-  ctx.strokeStyle = "#8ea0b5";
+  ctx.strokeStyle = "#94a3b8";
   ctx.lineWidth = 3;
   ctx.stroke();
 
@@ -1267,13 +1267,13 @@ function createForecastChart(
               fill: true,
 
               backgroundColor:
-                "rgba(69,213,255,0.08)",
+                "rgba(99,102,241,0.15)",
 
               borderColor:
-                "#45d5ff",
+                "#6366f1",
 
               pointBackgroundColor:
-                "#45d5ff"
+                "#6366f1"
             }
 
           ]
@@ -2022,8 +2022,8 @@ function initLiveChart() {
 
   // Create gradient for the line
   const gradient = ctx.createLinearGradient(0, 0, 0, 120);
-  gradient.addColorStop(0, "rgba(69, 213, 255, 0.4)");
-  gradient.addColorStop(1, "rgba(69, 213, 255, 0.0)");
+  gradient.addColorStop(0, "rgba(99, 102, 241, 0.35)");
+  gradient.addColorStop(1, "rgba(99, 102, 241, 0.0)");
 
   // Initial dummy data (e.g., last 20 data points)
   const initialData = Array.from({length: 20}, () => Math.random() * 20 + 30);
@@ -2036,7 +2036,7 @@ function initLiveChart() {
       datasets: [{
         label: "Risk Signal (%)",
         data: initialData,
-        borderColor: "#45d5ff",
+        borderColor: "#6366f1",
         backgroundColor: gradient,
         borderWidth: 2,
         fill: true,
@@ -2058,10 +2058,10 @@ function initLiveChart() {
           enabled: true,
           mode: 'index',
           intersect: false,
-          backgroundColor: '#0d1929',
-          titleColor: '#e9f0f7',
-          bodyColor: '#45d5ff',
-          borderColor: '#203149',
+          backgroundColor: '#1e293b',
+          titleColor: '#f8fafc',
+          bodyColor: '#6366f1',
+          borderColor: '#334155',
           borderWidth: 1
         }
       },

@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="leaflet.css" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="styles.css?v=5.2.0" />
+  <link rel="stylesheet" href="styles.css?v=6.0.0" />
 
   <!-- Three.js (local) -->
   <script src="three.min.js"></script>
@@ -206,13 +206,12 @@
     <!-- TELEMETRY TICKER BAR -->
     <div class="telemetry-bar">
       <div class="telemetry-track">
-        <span>📡 LIVE SENSOR TELEMETRY:</span>
+        <span>📡 SENSOR TELEMETRY:</span>
         <span><b>ZONE:</b> <strong id="tickerLocation">Active Location</strong></span>
-        <span><b>PRECIPITATION:</b> <strong id="tickerRain">10.5 mm</strong></span>
+        <span><b>ACCUMULATION:</b> <strong id="tickerRain">10.5 mm</strong></span>
         <span><b>INUNDATION RISK:</b> <strong id="tickerRisk">LOW</strong></span>
-        <span><b>MODEL SCORE:</b> <strong>0.904 AUC</strong></span>
-        <span><b>AWS STATIONS:</b> 4 Online</span>
-        <span><b>SYSTEM LATENCY:</b> 121ms</span>
+        <span><b>SATELLITE:</b> INSAT-3DR Operational</span>
+        <span><b>STATUS:</b> Normal Telemetry</span>
       </div>
     </div>
 
@@ -223,7 +222,7 @@
       <div>
 
         <div class="eyebrow">
-          DISASTER MANAGEMENT INTELLIGENCE
+          EARLY WARNING OPERATIONS PLATFORM
         </div>
 
         <h1 id="page-title">
@@ -247,13 +246,11 @@
           📄 Export Advisory
         </button>
 
-
-
         <button class="ghost-btn" id="voiceAdvisoryBtn" title="Play Voice Early Warning Advisory">
           🔊 Voice Warning
         </button>
 
-        <button class="ghost-btn" id="themeToggleBtn" title="Toggle Dark Tactical / Light Executive Theme">
+        <button class="ghost-btn" id="themeToggleBtn" title="Toggle Theme">
           🌓 Theme
         </button>
 
@@ -262,7 +259,7 @@
         </button>
 
         <button class="profile">
-          LIVE <span>AI</span>
+          OPERATIONS <span>ACTIVE</span>
         </button>
 
       </div>
@@ -2416,7 +2413,7 @@
 <script src="chart.umd.js"></script>
 
 <!-- Application -->
-<script src="app.js?v=30.0.0"></script>
+<script src="app.js?v=31.0.0"></script>
 
 </body>
 </html>
