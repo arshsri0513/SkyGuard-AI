@@ -1,6 +1,6 @@
 # 🌩️ SkyGuard AI — National Heavy Rainfall & Inundation Early Warning Platform
 > **Smart India Hackathon (SIH) 2026 Flagship Project**  
-> *Real-time multi-source data fusion combining satellite imagery, IMD Doppler radar, 3D DEM digital twin terrain profiles, ML ensemble predictions, and autonomous UAV drone reconnaissance.*
+> *Real-time multi-source data fusion combining satellite imagery, IMD Doppler radar, 3D DEM digital twin terrain profiles, ML ensemble prediction, and autonomous UAV drone reconnaissance.*
 
 <p align="center">
   <a href="https://rainsafe-ai-sih2026.vercel.app">
