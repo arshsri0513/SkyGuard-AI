@@ -3,10 +3,10 @@
 > *Real-time multi-source data fusion combining satellite imagery, IMD Doppler radar, 3D DEM digital twin terrain profiles, ML ensemble prediction, and autonomous UAV drone reconnaissance.*
 
 <p align="center">
-  <a href="https://rainsafe-ai-sih2026.vercel.app">
+  <a href="https://SkyGuard-ai-sih2026.vercel.app">
     <img src="https://img.shields.io/badge/Vercel-Live_Frontend-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel Live">
   </a>
-  <a href="https://rainsafe-ai-sih2026.onrender.com">
+  <a href="https://SkyGuard-ai-sih2026.onrender.com">
     <img src="https://img.shields.io/badge/Render-Cloud_API-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render Backend">
   </a>
   <a href="https://github.com/arshsri0513/SkyGuard-AI">
@@ -28,10 +28,10 @@
 
 | Service | Environment | URL | Status |
 | :--- | :--- | :--- | :---: |
-| **🚀 Vercel Production CDN** | Standalone Frontend | **[rainsafe-ai-sih2026.vercel.app](https://rainsafe-ai-sih2026.vercel.app)** | `LIVE 200 OK` |
-| **🟣 Render Cloud Full-Stack** | Python FastAPI Backend | **[rainsafe-ai-sih2026.onrender.com](https://rainsafe-ai-sih2026.onrender.com)** | `LIVE 200 OK` |
-| **📡 Dashboard Telemetry API** | REST API Endpoint | **[rainsafe-ai-sih2026.onrender.com/api/dashboard](https://rainsafe-ai-sih2026.onrender.com/api/dashboard)** | `LIVE 200 OK` |
-| **📚 Interactive API Docs** | Swagger / OpenAPI | **[rainsafe-ai-sih2026.onrender.com/docs](https://rainsafe-ai-sih2026.onrender.com/docs)** | `LIVE 200 OK` |
+| **🚀 Vercel Production CDN** | Standalone Frontend | **[SkyGuard-ai-sih2026.vercel.app](https://SkyGuard-ai-sih2026.vercel.app)** | `LIVE 200 OK` |
+| **🟣 Render Cloud Full-Stack** | Python FastAPI Backend | **[SkyGuard-ai-sih2026.onrender.com](https://SkyGuard-ai-sih2026.onrender.com)** | `LIVE 200 OK` |
+| **📡 Dashboard Telemetry API** | REST API Endpoint | **[SkyGuard-ai-sih2026.onrender.com/api/dashboard](https://SkyGuard-ai-sih2026.onrender.com/api/dashboard)** | `LIVE 200 OK` |
+| **📚 Interactive API Docs** | Swagger / OpenAPI | **[SkyGuard-ai-sih2026.onrender.com/docs](https://SkyGuard-ai-sih2026.onrender.com/docs)** | `LIVE 200 OK` |
 
 ---
 
@@ -141,3 +141,4 @@ Open **`http://127.0.0.1:5500`** in your browser!
 
 Developed for **Smart India Hackathon (SIH) 2026**. Open source under the MIT License.  
 Author: **Arsh Srivastava** ([@arshsri0513](https://github.com/arshsri0513))
+

@@ -1,5 +1,5 @@
 /* =========================================================
-   RAINSAFE AI — APPLICATION LOGIC
+   SkyGuard AI — APPLICATION LOGIC
    ========================================================= */
 
 /* =========================================================
@@ -8,7 +8,7 @@
 
 const API = (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") 
   ? "http://127.0.0.1:8000" 
-  : "https://rainsafe-ai-sih2026.onrender.com";
+  : "https://SkyGuard-ai-sih2026.onrender.com";
 
 
 /* =========================================================
@@ -27,7 +27,7 @@ let selectedMarker = null;
 
 
 function getInitialLocation() {
-  const saved = localStorage.getItem("rainsafe_active_location");
+  const saved = localStorage.getItem("SkyGuard_active_location");
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
@@ -1565,12 +1565,12 @@ function initRainCanvas() {
   const canvas = document.getElementById("rain-canvas");
 
   if (!canvas) {
-    console.warn("RAINSAFE AI: rain-canvas element not found.");
+    console.warn("SkyGuard AI: rain-canvas element not found.");
     return;
   }
 
   if (typeof THREE === "undefined") {
-    console.warn("RAINSAFE AI: Three.js not loaded — rain animation skipped.");
+    console.warn("SkyGuard AI: Three.js not loaded — rain animation skipped.");
     return;
   }
 
@@ -1721,7 +1721,7 @@ function initRainCanvas() {
 
 
   console.log(
-    "RAINSAFE AI: Three.js rain canvas initialized."
+    "SkyGuard AI: Three.js rain canvas initialized."
   );
 
 }
@@ -1747,12 +1747,12 @@ function initGlobeCanvas() {
   const canvas = document.getElementById("globe-canvas");
 
   if (!canvas) {
-    console.warn("RAINSAFE AI: globe-canvas element not found.");
+    console.warn("SkyGuard AI: globe-canvas element not found.");
     return;
   }
 
   if (typeof THREE === "undefined") {
-    console.warn("RAINSAFE AI: Three.js not loaded — globe animation skipped.");
+    console.warn("SkyGuard AI: Three.js not loaded — globe animation skipped.");
     return;
   }
 
@@ -1910,7 +1910,7 @@ function initGlobeCanvas() {
 
   animate();
 
-  console.log("RAINSAFE AI: 3D Interactive Globe initialized.");
+  console.log("SkyGuard AI: 3D Interactive Globe initialized.");
 }
 
 function updateGlobeMarker(lat, lng) {
@@ -2010,11 +2010,11 @@ function animateCountUp(elementId, endValue, suffix, decimals) {
 function initLiveChart() {
   const canvas = document.getElementById("liveRiskChart");
   if (!canvas) {
-    console.warn("RAINSAFE AI: liveRiskChart element not found.");
+    console.warn("SkyGuard AI: liveRiskChart element not found.");
     return;
   }
   if (typeof Chart === "undefined") {
-    console.warn("RAINSAFE AI: Chart.js not loaded.");
+    console.warn("SkyGuard AI: Chart.js not loaded.");
     return;
   }
 
@@ -2103,7 +2103,7 @@ function initLiveChart() {
     
   }, 2500); // Update every 2.5 seconds
 
-  console.log("RAINSAFE AI: Live Chart initialized.");
+  console.log("SkyGuard AI: Live Chart initialized.");
 }
 
 
@@ -2585,7 +2585,7 @@ async function searchLocation(
 
   console.log("NEW ACTIVE LOCATION:", activeLocation);
   try {
-    localStorage.setItem("rainsafe_active_location", JSON.stringify(activeLocation));
+    localStorage.setItem("SkyGuard_active_location", JSON.stringify(activeLocation));
   } catch (e) {}
 
   // Instant UI & Map FlyTo update (<50ms)
@@ -2754,7 +2754,7 @@ async function loadDashboard() {
 async function refreshAllData() {
 
   console.log(
-    "Refreshing RAINSAFE AI data for:",
+    "Refreshing SkyGuard AI data for:",
     activeLocation
   );
 
@@ -2828,7 +2828,7 @@ async function refreshAllData() {
 
 
   console.log(
-    "RAINSAFE AI refresh complete:",
+    "SkyGuard AI refresh complete:",
     activeLocation
   );
 
@@ -3621,7 +3621,7 @@ function downloadAdvisoryReport() {
     <!DOCTYPE html>
     <html>
     <head>
-      <title>RAINSAFE AI Advisory Report - ${loc}</title>
+      <title>SkyGuard AI Advisory Report - ${loc}</title>
       <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; color: #0d1e30; background: #fff; line-height: 1.6; }
         .header { border-bottom: 3px solid #0056b3; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
@@ -3642,7 +3642,7 @@ function downloadAdvisoryReport() {
     <body>
       <div class="header">
         <div>
-          <div class="title">RAINSAFE AI — EARLY WARNING ADVISORY</div>
+          <div class="title">SkyGuard AI — EARLY WARNING ADVISORY</div>
           <div class="subtitle">State Disaster Management Authority • Automated Intelligence Report</div>
         </div>
         <div class="badge">${risk} RISK</div>
@@ -3669,7 +3669,7 @@ function downloadAdvisoryReport() {
       </div>
       <div class="footer">
         <span>Confidential • National Disaster Relief Framework</span>
-        <span>RAINSAFE AI Disaster Intelligence Platform v3.0</span>
+        <span>SkyGuard AI Disaster Intelligence Platform v3.0</span>
       </div>
       <script>window.onload = function() { window.print(); };</script>
     </body>
@@ -3751,7 +3751,7 @@ function initBroadcastModal() {
 
     if (targetLocEl) targetLocEl.textContent = loc;
     if (msgText) {
-      msgText.value = `[RAINSAFE AI URGENT ADVISORY] High-confidence early warning for ${loc}. Forecast Rainfall: ${rain}mm. Risk Status: ${risk}. Response teams standby.`;
+      msgText.value = `[SkyGuard AI URGENT ADVISORY] High-confidence early warning for ${loc}. Forecast Rainfall: ${rain}mm. Risk Status: ${risk}. Response teams standby.`;
     }
     if (progressBox) progressBox.style.display = "none";
     if (sendBtn) {
@@ -4128,7 +4128,7 @@ function initAiChatbot() {
 • <strong>Sub-Camp</strong>: District Sports Complex (800 capacity)<br>
 • 🧭 Active GPS Evacuation Corridors dispatched!`;
       } else if (qLower.includes("model") || qLower.includes("accuracy") || qLower.includes("rf")) {
-        reply = `📊 <strong>RAINSAFE AI Model Intelligence</strong>:<br>
+        reply = `📊 <strong>SkyGuard AI Model Intelligence</strong>:<br>
 • <strong>Random Forest Score</strong>: 87% Confidence<br>
 • <strong>LightGBM Score</strong>: 90.4% ROC-AUC<br>
 • <strong>Inputs</strong>: Satellite IR, Radar, AWS Sensors & DEM Topography.`;
@@ -4326,7 +4326,7 @@ function exportDronePDFReport() {
       </ul>
 
       <div class="footer">
-        <span>AUTHENTICATED BY RAINSAFE AI DISASTER INTELLIGENCE PIPELINE</span>
+        <span>AUTHENTICATED BY SkyGuard AI DISASTER INTELLIGENCE PIPELINE</span>
         <span>CONFIDENTIAL • FOR EMERGENCY COMMAND UNITS ONLY</span>
       </div>
 
@@ -4447,7 +4447,7 @@ window.addEventListener(
     );
 
     console.log(
-      "RAINSAFE AI INITIALIZING"
+      "SkyGuard AI INITIALIZING"
     );
 
     console.log(
@@ -4558,7 +4558,7 @@ window.addEventListener(
     );
 
     console.log(
-      "RAINSAFE AI INITIALIZED SUCCESSFULLY"
+      "SkyGuard AI INITIALIZED SUCCESSFULLY"
     );
 
     console.log(
@@ -4675,3 +4675,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
