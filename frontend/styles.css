@@ -1,5 +1,5 @@
 /* =========================================================
-   SKYGUARD AI — SAAS ENTERPRISE OPERATIONS DESIGN SYSTEM
+   SKYGUARD AI - SAAS ENTERPRISE OPERATIONS DESIGN SYSTEM
    ========================================================= */
 
 :root {
@@ -51,7 +51,7 @@ button, input, select {
 
 .sidebar {
   width: 250px;
-  background: #0f172a;
+  background: var(--bg);
   border-right: 1px solid var(--line);
   padding: 20px 16px;
   display: flex;
@@ -85,7 +85,7 @@ button, input, select {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 16px;
-  color: #f8fafc;
+  color: var(--text);
   letter-spacing: -0.2px;
 }
 
@@ -111,7 +111,7 @@ nav {
   text-align: left;
   padding: 10px 12px;
   border-radius: 6px;
-  color: #94a3b8;
+  color: var(--muted);
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
@@ -122,12 +122,12 @@ nav {
 }
 
 .nav-item:hover {
-  background: #1e293b;
-  color: #f8fafc;
+  background: var(--panel);
+  color: var(--text);
 }
 
 .nav-item.active {
-  background: #1e293b;
+  background: var(--panel);
   color: #ffffff;
   font-weight: 600;
   border-left: 3px solid var(--accent);
@@ -146,7 +146,7 @@ nav {
 
 .mode-card {
   border: 1px solid var(--line);
-  background: #1e293b;
+  background: var(--panel);
   border-radius: 8px;
   padding: 12px 14px;
   margin-bottom: 14px;
@@ -163,7 +163,7 @@ nav {
 .mode-card strong {
   display: block;
   font-size: 13px;
-  color: #f8fafc;
+  color: var(--text);
   margin: 4px 0 2px;
 }
 
@@ -193,7 +193,7 @@ nav {
    ========================================================= */
 
 .telemetry-bar {
-  background: #0f172a;
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
   padding: 9px 24px;
   margin: 0 -28px 14px;
@@ -221,7 +221,7 @@ nav {
 }
 
 .telemetry-track strong {
-  color: #f8fafc;
+  color: var(--text);
   font-weight: 600;
 }
 
@@ -246,7 +246,7 @@ nav {
   margin: 2px 0 0;
   font-size: 20px;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--text);
   letter-spacing: -0.3px;
 }
 
@@ -277,7 +277,7 @@ nav {
 
 .ghost-btn, .profile {
   border: 1px solid var(--line);
-  background: #1e293b;
+  background: var(--panel);
   border-radius: 6px;
   padding: 7px 12px;
   font-size: 12px;
@@ -288,8 +288,8 @@ nav {
 }
 
 .ghost-btn:hover, .profile:hover {
-  background: #334155;
-  color: #f8fafc;
+  background: var(--line);
+  color: var(--text);
 }
 
 .profile {
@@ -298,7 +298,7 @@ nav {
 }
 
 .profile span {
-  color: #f8fafc;
+  color: var(--text);
 }
 
 /* =========================================================
@@ -318,7 +318,7 @@ nav {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 20px 24px;
-  background: #1e293b;
+  background: var(--panel);
   display: flex;
   justify-content: space-between;
   gap: 24px;
@@ -354,7 +354,7 @@ nav {
   font-weight: 700;
   max-width: 760px;
   margin: 4px 0 8px;
-  color: #f8fafc;
+  color: var(--text);
   letter-spacing: -0.3px;
 }
 
@@ -392,7 +392,7 @@ nav {
 
 .hero-meta strong {
   font-size: 13px;
-  color: #f8fafc;
+  color: var(--text);
   display: block;
   margin-top: 4px;
   font-weight: 600;
@@ -408,7 +408,7 @@ nav {
 }
 
 .metric-card {
-  background: #1e293b;
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 16px;
@@ -426,7 +426,7 @@ nav {
   display: block;
   font-size: 24px;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--text);
   margin: 6px 0 2px;
   letter-spacing: -0.4px;
 }
@@ -472,7 +472,7 @@ nav {
 }
 
 .panel {
-  background: #1e293b;
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 18px;
@@ -489,14 +489,14 @@ nav {
 .panel h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #f8fafc;
+  color: var(--text);
   margin: 0;
 }
 
 .tag, .severity {
   font-size: 11px;
   font-weight: 600;
-  border: 1px solid #334155;
+  border: 1px solid var(--line);
   padding: 4px 8px;
   border-radius: 4px;
   color: #cbd5e1;
@@ -519,12 +519,12 @@ nav {
 
 .map-search input {
   flex: 1;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 6px 12px;
   font-size: 12px;
-  color: #f8fafc;
+  color: var(--text);
   outline: none;
 }
 
@@ -555,19 +555,19 @@ nav {
 
 .layer {
   border: 1px solid var(--line);
-  background: #0f172a;
+  background: var(--bg);
   padding: 5px 10px;
   border-radius: 6px;
   font-size: 11px;
   font-weight: 500;
-  color: #94a3b8;
+  color: var(--muted);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .layer:hover {
-  background: #334155;
-  color: #f8fafc;
+  background: var(--line);
+  color: var(--text);
 }
 
 .layer.active {
@@ -584,7 +584,7 @@ nav {
   height: 420px;
   border-radius: 6px;
   overflow: hidden;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
 }
 
@@ -592,7 +592,7 @@ nav {
   display: flex;
   gap: 16px;
   padding: 10px 4px 0;
-  color: #94a3b8;
+  color: var(--muted);
   font-size: 11px;
   font-weight: 500;
 }
@@ -632,14 +632,14 @@ canvas {
 
 .drivers b {
   text-align: right;
-  color: #f8fafc;
+  color: var(--text);
   font-size: 11px;
 }
 
 .drivers i {
   grid-column: 1 / 3;
   height: 6px;
-  background: #0f172a;
+  background: var(--bg);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -668,7 +668,7 @@ canvas {
 }
 
 .sources div {
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   padding: 12px 8px;
   border-radius: 6px;
@@ -684,7 +684,7 @@ canvas {
 .sources b {
   display: block;
   font-size: 11px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .sources small {
@@ -732,7 +732,7 @@ canvas {
   font-size: 22px;
   font-weight: 700;
   margin: 4px 0;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .section-heading p, .muted {
@@ -755,7 +755,7 @@ canvas {
   font-size: 38px;
   font-weight: 700;
   margin: 16px 0 2px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .forecast-number span {
@@ -801,7 +801,7 @@ canvas {
   font-weight: 700;
   display: block;
   margin-top: 10px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .inundation-card small {
@@ -818,7 +818,7 @@ canvas {
 
 .exposure div {
   text-align: center;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   padding: 12px 4px;
   border-radius: 6px;
@@ -834,7 +834,7 @@ canvas {
   display: block;
   font-size: 18px;
   margin: 4px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .exposure small {
@@ -889,7 +889,7 @@ canvas {
 
 .alert-card {
   border-color: rgba(244, 63, 94, 0.4);
-  background: #1e293b;
+  background: var(--panel);
 }
 
 .alert-top {
@@ -903,7 +903,7 @@ canvas {
 .alert-card h3 {
   font-size: 18px;
   margin: 14px 0 8px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .alert-card p {
@@ -920,7 +920,7 @@ canvas {
 }
 
 .alert-stats div {
-  background: #0f172a;
+  background: var(--bg);
   padding: 10px;
   border-radius: 6px;
   border: 1px solid var(--line);
@@ -936,7 +936,7 @@ canvas {
   display: block;
   margin-top: 4px;
   font-size: 13px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .actions {
@@ -949,7 +949,7 @@ canvas {
   display: flex;
   gap: 10px;
   align-items: center;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   padding: 10px;
   border-radius: 6px;
@@ -977,7 +977,7 @@ canvas {
 
 .source-node {
   min-width: 140px;
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 16px;
@@ -987,7 +987,7 @@ canvas {
 .source-node b {
   display: block;
   font-size: 12px;
-  color: #f8fafc;
+  color: var(--text);
   margin: 6px 0 2px;
 }
 
@@ -1011,7 +1011,7 @@ canvas {
 }
 
 .fusion-bars div {
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   padding: 12px;
   border-radius: 6px;
@@ -1081,7 +1081,7 @@ canvas {
 }
 
 .evaluation div {
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   padding: 12px;
   border-radius: 6px;
@@ -1096,7 +1096,7 @@ canvas {
 .evaluation b {
   display: block;
   font-size: 18px;
-  color: #f8fafc;
+  color: var(--text);
   margin-top: 4px;
 }
 
@@ -1107,7 +1107,7 @@ canvas {
   right: 24px;
   bottom: 24px;
   width: 380px;
-  background: #1e293b;
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 18px;
@@ -1129,7 +1129,7 @@ canvas {
   font-size: 16px;
   font-weight: 700;
   margin: 0;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .scenario-head button {
@@ -1169,7 +1169,7 @@ input[type=range] {
 }
 
 .scenario-result div {
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   padding: 8px;
   border-radius: 6px;
@@ -1185,7 +1185,7 @@ input[type=range] {
   display: block;
   margin-top: 4px;
   font-size: 12px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .floating-scenario {
@@ -1255,7 +1255,7 @@ input[type=range] {
 
 .ml-probability,
 .ml-risk {
-  background: #0f172a;
+  background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 12px 14px;
@@ -1307,7 +1307,7 @@ input[type=range] {
 
 .ml-meta b {
   font-size: 12px;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .ml-feature-title {
@@ -1315,5 +1315,17 @@ input[type=range] {
   font-size: 10px;
   font-weight: 600;
   color: var(--muted);
+}
+
+
+
+body.light-theme {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --panel2: #e2e8f0;
+  --line: #cbd5e1;
+  --line-subtle: #f1f5f9;
+  --text: #0f172a;
+  --muted: #475569;
 }
 
